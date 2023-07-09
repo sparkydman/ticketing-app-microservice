@@ -8,10 +8,12 @@ export const errorMiddleware = (
   next: NextFunction
 ) => {
   if (err instanceof CustomError) {
-    return res.status(err.errorStatusCode).send(err.serializeError);
+    return res.status(err.errorStatusCode).send(err.serializeError());
   }
 
-  res.status(500).send([{
-    message: 'some thing went wrong',
-  }])
+  res.status(500).send([
+    {
+      message: 'some thing went wrong',
+    },
+  ]);
 };
